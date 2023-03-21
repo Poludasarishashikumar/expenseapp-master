@@ -3,10 +3,10 @@ import swal from 'sweetalert2';
 import './ExpenseForm.css';
 
 const currencies = [
-  { code: "USD", value: "$", rate: 1 },
-  { code: "INR", value: "₹", rate: 0.82 },
-  { code: "EUR", value: "€", rate: 0.72 },
-  { code: "GBP", value: "£", rate: 0.72 },
+  { code: "USD", value: "USD" },
+  { code: "INR", value: "INR" },
+  { code: "EUR", value: "EUR" },
+  { code: "GBP", value: "GBP" },
   // add more currencies as needed
 ];
 const ExpenseForm = (props) => {
@@ -352,10 +352,7 @@ const ExpenseForm = (props) => {
             
               <select  value={enteredCurrency} onChange={currencyChangeHandler}>
               <option value=''>Select any Currency</option>  
-              {/* <option value='$'>USD</option>
-          <option value='₹'>INR</option>
-          <option value='€'>EUR</option>
-          <option value='£'>GBP</option> */}
+             
            {currencies.map((option)=>(
             <option key={option.code} value={option.value}>
               {option.code}

@@ -23,6 +23,7 @@ const ExpensesFilter2 = (props) => {
         <select value={props.selected} onChange={dropdownChangeHandler}>
         
        
+          <option value=''>All</option>
           {YearOpt.map((option)=>(
             <option key={option.value} value={option.value}>
               {option.label}

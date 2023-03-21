@@ -7,9 +7,17 @@ import './Expenses.css';
 import CurrencyFilter from './CurrencyFilter';
 import CurrencyFilter2 from './CurrencyFilter2';
 
+const rates={
+  USD: 1,
+  EUR: 4,
+  INR: 2,
+  GBP: 5,
+};
+
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState('2020');
   const [filteredCurrency, setFilteredCurrency] = useState('$');
+  
  console.log(filteredCurrency);
   // const filterCurrencyHandler = (selectedCurrency) => {
   //   setFilteredCurrency(selectedCurrency);
@@ -34,12 +42,14 @@ const Expenses = (props) => {
   //   ));
   // }
 
-
+  
 
 
 
   const filterCurrencyHandler = (selectedCurrency) => {
     setFilteredCurrency(selectedCurrency.toString());
+   
+    
   };
 
   // const filteredExpenses = props.items.filter((expense) => {
@@ -75,17 +85,23 @@ const Expenses = (props) => {
   };
 
   const filteredExpenses = props.items.filter((expense) => {
-    return ((expense.date.getFullYear().toString() === filteredYear) && (expense.currency===filteredCurrency) );
+    if(filteredYear=='')
+    {
+      return ((expense.date.getFullYear().toString())  ); 
+    }
+    else{
+    return ((expense.date.getFullYear().toString() === filteredYear)  );
+    }
   });
 
   let expensesContent = <p>No expenses found.</p>;
-
   if (filteredExpenses.length > 0) {
     expensesContent = filteredExpenses.map((expense) => (
+      
       <ExpenseItem
         key={expense.id}
         title={expense.title}
-        amount={expense.amount}
+        amount={expense.amount*rates[filteredCurrency]}
         date={expense.date}
         name={expense.name}
         currency={expense.currency}
@@ -103,6 +119,7 @@ const Expenses = (props) => {
         <CurrencyFilter
           selected={filteredCurrency}
           onChangeFilter={filterCurrencyHandler}
+          
           />
         {expensesContent}
         {/* <CurrencyFilter
