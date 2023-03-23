@@ -5,6 +5,7 @@ import Card from '../UI/Card';
 import ExpensesFilter2 from './ExpensesFilter2';
 import './Expenses.css';
 import CurrencyFilter from './CurrencyFilter';
+import MonthFilter from './MonthFilter';
 import CurrencyFilter2 from './CurrencyFilter2';
 
 const rates={
@@ -17,7 +18,7 @@ const rates={
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState('2020');
   const [filteredCurrency, setFilteredCurrency] = useState('INR');
-  
+  const [filteredMonth, setFilteredMonth] = useState('January');
 
   // const filterCurrencyHandler = (selectedCurrency) => {
   //   setFilteredCurrency(selectedCurrency);
@@ -51,7 +52,11 @@ const Expenses = (props) => {
    
     
   };
-
+  const filterMonthHandler = (selectedMonth) => {
+    setFilteredMonth(selectedMonth.toString());
+   
+    
+  };
   // const filteredExpenses = props.items.filter((expense) => {
   //   return expense.date.getFullYear().toString() === filteredYear;
   // });
@@ -90,7 +95,13 @@ const Expenses = (props) => {
       return ((expense.date.getFullYear().toString())  ); 
     }
     else{
-    return ((expense.date.getFullYear().toString() === filteredYear)  );
+      if(filteredMonth=='')
+    {
+      return (expense.date.getFullYear().toString()===filteredYear ); 
+    }
+    else{
+    return ((expense.date.getFullYear().toString() === filteredYear) && (expense.date.toLocaleString('en-US', { month: 'long' }) === filteredMonth) );
+    }
     }
   });
 
@@ -117,6 +128,11 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
+          <MonthFilter
+          selected={filteredMonth}
+          onChangeFilter={filterMonthHandler}
+          
+          />
         <CurrencyFilter
           selected={filteredCurrency}
           onChangeFilter={filterCurrencyHandler}
