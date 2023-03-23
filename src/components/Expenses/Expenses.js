@@ -16,9 +16,9 @@ const rates={
 
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState('2020');
-  const [filteredCurrency, setFilteredCurrency] = useState('$');
+  const [filteredCurrency, setFilteredCurrency] = useState('INR');
   
- console.log(filteredCurrency);
+
   // const filterCurrencyHandler = (selectedCurrency) => {
   //   setFilteredCurrency(selectedCurrency);
   // };
@@ -101,10 +101,11 @@ const Expenses = (props) => {
       <ExpenseItem
         key={expense.id}
         title={expense.title}
-        amount={expense.amount*rates[filteredCurrency]}
+        amount={expense.amount}
         date={expense.date}
         name={expense.name}
         currency={expense.currency}
+        kate={filteredCurrency}
       />
     ));
   }

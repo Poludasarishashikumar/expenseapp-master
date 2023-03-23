@@ -295,17 +295,6 @@ const ExpenseForm = (props) => {
           <p className='error'>{formError.title}</p>
         </div>
         <div className='new-expense__control'>
-          <label>Amount</label>
-          <input
-            type='number'
-            min='0.01'
-            step='0.01'
-            value={enteredAmount}
-            onChange={amountChangeHandler}
-          />
-          <p className='error'>{formError.amount}</p>
-        </div>
-        <div className='new-expense__control'>
           <label>Date</label>
           <input
             type='date'
@@ -333,17 +322,28 @@ const ExpenseForm = (props) => {
           <ExpenseCurrency
           
           value={enteredCurrency}
-          onChangeCurrency={currencyChangeHandler}/> */}
+        onChangeCurrency={currencyChangeHandler}/> */}
 
 
 
           
         {/* <div className='new-expense__control'>
           <label>Currency</label>
-          <ExpenseCurrency
+          <ExpenseCurrencys
           
           value={enteredCurrency}
         onChangeCurrency={currencyChangeHandler}/> */}
+        <div className='new-expense__control'>
+          <label>Amount</label>
+          <input
+            type='number'
+            min='0.01'
+            step='0.01'
+            value={enteredAmount}
+            onChange={amountChangeHandler}
+          />
+          <p className='error'>{formError.amount}</p>
+        </div>
 
 
           
