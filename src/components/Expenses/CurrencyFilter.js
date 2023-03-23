@@ -20,7 +20,7 @@ const CurrencyFilter = (props) => {
       <div className='expenses-currencyfilter__control'>
         <label>Filter by Currency</label>
         <select value={props.selected} onChange={dropdownChangeHandler} >
-        {/* <option value=''>None</option>  */}
+        <option value=''>None</option> 
         {currencies.map((option)=>(
             <option key={option.code} value={option.value}  >
               {option.code}

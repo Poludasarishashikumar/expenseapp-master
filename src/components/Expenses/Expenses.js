@@ -7,6 +7,7 @@ import './Expenses.css';
 import CurrencyFilter from './CurrencyFilter';
 import MonthFilter from './MonthFilter';
 import CurrencyFilter2 from './CurrencyFilter2';
+import ExpensesChart from './ExpensesChart';
 
 const rates={
   USD: 1,
@@ -90,17 +91,33 @@ const Expenses = (props) => {
   };
 
   const filteredExpenses = props.items.filter((expense) => {
-    if(filteredYear=='')
+    // console.log(filteredExpenses.)
+    if(filteredYear==='' && filteredCurrency==='')
     {
-      return ((expense.date.getFullYear().toString())  ); 
+      return ((expense.date.getFullYear().toString()) ); 
+    }
+    else if(filteredYear==='' )
+    {
+      return ((expense.date.toLocaleString('en-US', { month: 'long' }) === filteredMonth) && expense.currency === filteredCurrency ); 
     }
     else{
-      if(filteredMonth=='')
+      if(filteredMonth==='' && filteredCurrency==='')
     {
       return (expense.date.getFullYear().toString()===filteredYear ); 
     }
+    else if(filteredMonth==='')
+    {
+      return (expense.date.getFullYear().toString()===filteredYear && expense.currency === filteredCurrency); 
+    }
     else{
-    return ((expense.date.getFullYear().toString() === filteredYear) && (expense.date.toLocaleString('en-US', { month: 'long' }) === filteredMonth) );
+    //   if(filteredCurrency=='')
+    // {
+    //   return (expense.date.toLocaleString('en-US', { month: 'long' }) === filteredMonth ); 
+    // }
+    // else{
+
+      return ((expense.date.getFullYear().toString() === filteredYear) && (expense.date.toLocaleString('en-US', { month: 'long' }) === filteredMonth) && expense.currency === filteredCurrency);
+    // }
     }
     }
   });
@@ -116,7 +133,7 @@ const Expenses = (props) => {
         date={expense.date}
         name={expense.name}
         currency={expense.currency}
-        kate={filteredCurrency}
+        // kate={filteredCurrency}
       />
     ));
   }
@@ -138,6 +155,7 @@ const Expenses = (props) => {
           onChangeFilter={filterCurrencyHandler}
           
           />
+          <ExpensesChart expenses={filteredExpenses} />
         {expensesContent}
         {/* <CurrencyFilter
         // selected={filteredCurrency}
