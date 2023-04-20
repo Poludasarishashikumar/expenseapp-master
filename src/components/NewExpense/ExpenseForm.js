@@ -291,6 +291,7 @@ const ExpenseForm = (props) => {
             type='text'
             value={enteredTitle}
             onChange={titleChangeHandler}
+            placeholder='Enter ItemName'
           />
           <p className='error'>{formError.title}</p>
         </div>
@@ -311,6 +312,7 @@ const ExpenseForm = (props) => {
             type='text'
             value={enteredName}
             onChange={nameChangeHandler}
+            placeholder='Enter ShopName'
           />
           <p className='error'>{formError.name}</p>
         </div>
@@ -341,6 +343,7 @@ const ExpenseForm = (props) => {
             step='0.01'
             value={enteredAmount}
             onChange={amountChangeHandler}
+            placeholder='Enter Amount'
           />
           <p className='error'>{formError.amount}</p>
         </div>
